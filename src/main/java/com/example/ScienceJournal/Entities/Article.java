@@ -9,7 +9,7 @@ import java.util.Set;
 public class Article {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = false, nullable = true)
+    @Column(unique = false, nullable = false)
     private String name;
     @Column(unique = false, nullable = true, columnDefinition = "TEXT", length=20000)
     private String text;
