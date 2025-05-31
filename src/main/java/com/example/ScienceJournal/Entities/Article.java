@@ -11,12 +11,12 @@ public class Article {
     private Long id;
     @Column(unique = false, nullable = true)
     private String name;
-    @Column(unique = false, nullable = true)
+    @Column(unique = false, nullable = true, columnDefinition = "TEXT", length=20000)
     private String text;
     @Column
     private String author;
     @ElementCollection(targetClass = Tag.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "atricle_tag", joinColumns = @JoinColumn(name = "article_id"))
+    @CollectionTable(name = "article_tag", joinColumns = @JoinColumn(name = "article_id"))
     @Enumerated(EnumType.STRING)
     private Set<Tag> tag;
     @Column(unique = false, nullable = true)
