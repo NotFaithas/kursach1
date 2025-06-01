@@ -7,7 +7,8 @@ import com.example.ScienceJournal.Repos.ArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class ArticleService {
@@ -27,5 +28,17 @@ public class ArticleService {
         article.setAuthor(UDS.getCurrentUser());
         article.setTag(Collections.singleton(Tag.Created));
         aRepo.save(article);
+    }
+    public List<Article> findPublishedArticles(String searchName) {
+        if (searchName == null || searchName.trim().isEmpty()) {
+            // Возвращаем все опубликованные статьи
+            return aRepo.findByTag(Tag.Published);
+        } else {
+            // Ищем опубликованные статьи по названию
+            return aRepo.findByNameContainingIgnoreCaseAndTag(
+                    searchName,
+                    Tag.Published
+            );
+        }
     }
 }

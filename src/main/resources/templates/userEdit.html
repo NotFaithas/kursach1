@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>User Data Editing</title>
@@ -32,7 +33,7 @@
         <label for="username" class="form-label">Имя пользователя:</label>
         <input type="text" class="form-control" id="username" th:field="*{username}"/>
       </div>
-      <div>
+      <div sec:authorize="hasAuthority('ADMIN')">
         <p>Роли пользователя:</p>
         <div th:each="role : ${roles}" class="form-check">
           <input type="checkbox" class="form-check-input"

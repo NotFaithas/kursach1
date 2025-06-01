@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -18,10 +20,8 @@ public class MainController {
     ArticleService aService;
 
     @GetMapping
-    public String main(Model model) {
-        List<Article> articleList = aService.findByTag(Tag.Published);
-        model.addAttribute("publishedArticles", articleList);
-        model.addAttribute(new Article());
+    public String main(@RequestParam(required = false) String name, Model model) {
+        model.addAttribute("publishedArticles", aService.findPublishedArticles(name));
         return "mainPage";
     }
     @GetMapping("/View/{article}")
@@ -30,4 +30,5 @@ public class MainController {
         model.addAttribute("articleView", article);
         return "articleView";
     }
+
 }

@@ -29,7 +29,9 @@ public class WebSecurityConfig {
                 .formLogin((form) -> form
                         .loginPage("/authentication").permitAll()
                 )
-                .logout(LogoutConfigurer::permitAll)
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll())
                 .userDetailsService(userDetails);
         return http.build();
     }
