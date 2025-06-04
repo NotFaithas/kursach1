@@ -39,7 +39,7 @@
           <form th:if="${article.editable}" th:action="@{/Article/Edit/{id}(id=${article.getId()})}">
             <button type="submit" class="btn btn-primary btn-sm">Редактировать</button>
           </form>
-          <form th:if="${article.editable}" th:action="@{/Article/Edit/Request}" method="post">
+          <form th:if="${article.editable and !article.responsed}" th:action="@{/Article/Edit/Request}" method="post">
             <input type="hidden" name="id" th:value="${article.id}"/>
             <button type="submit" class="btn btn-success btn-sm">Отправить на публикацию</button>
           </form>

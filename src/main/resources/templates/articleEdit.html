@@ -40,11 +40,21 @@
                  role="alert">
                 <span th:text="'Пожелания модератора к статье: ' + *{response}"></span>
             </div>
+
             <div>
                 <input type="hidden" th:field="*{id}"/>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
+            </div>
+
+        </form> <br/>
+
+        <form th:action="@{/Article/Edit/Request}" method="post"
+              th:if="${article.response != null and !article.response.isEmpty()}">
+            <div class="d-grid gap-2">
+                <input type="hidden" name="id" th:value="${article.id}"/>
+                <button type="submit" class="btn btn-success btn-sm">Отправить на публикацию</button>
             </div>
         </form>
 
