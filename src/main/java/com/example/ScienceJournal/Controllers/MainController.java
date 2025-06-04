@@ -20,6 +20,7 @@ public class MainController {
         model.addAttribute("publishedArticles", aService.findPublishedArticles(name));
         return "mainPage";
     }
+
     @GetMapping("/View/{article}")
     @PreAuthorize("#article.published")
     public String view(@PathVariable Article article, Model model) {

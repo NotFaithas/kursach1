@@ -31,10 +31,8 @@ public class ArticleService {
     }
     public List<Article> findPublishedArticles(String searchName) {
         if (searchName == null || searchName.trim().isEmpty()) {
-            // Возвращаем все опубликованные статьи
             return aRepo.findByTag(Tag.Published);
         } else {
-            // Ищем опубликованные статьи по названию
             return aRepo.findByNameContainingIgnoreCaseAndTag(
                     searchName,
                     Tag.Published
